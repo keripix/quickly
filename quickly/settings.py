@@ -24,8 +24,9 @@ class Settings:
 
         self.createSettings()
 
-    def loadSettings(self):
-        pass
+    def set(self, key=None, value=None):
+        if key is None or value is None:
+            raise NameError("Key or Value cannot be None")
 
     def writeSettings(self):
         pass

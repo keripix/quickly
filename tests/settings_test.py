@@ -39,6 +39,10 @@ class TestSetting(unittest.TestCase):
 
         os.rmdir(self.path)
 
+    def testCallingSetWithUndefinedParams(self):
+        s = Settings("testsetting")
+        self.assertRaises(NameError, s.set)
+
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestSetting)
     unittest.TextTestRunner(verbosity=2).run(suite)
