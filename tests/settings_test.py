@@ -3,30 +3,32 @@
 
 import unittest
 from quickly.settings import Settings
-from os.path import exists
 import os
 import platform
+import sys
 
 
 class TestSetting(unittest.TestCase):
     def setUp(self):
-        pass
+        if sys.platform.startswith('win') or sys.platform.startswith('cyg'):
+            self.path = os.path.join(os.getenv('HOME'), 'config', "testsetting")
+        else:
+            self.path = os.path.join(os.getenv('HOME'), '.config', "testsetting")
 
     def tearDown(self):
-        pass
+        if os.path.exists(self.path):
+            os.remove(self.path)
 
     def testInit(self):
         s = Settings("testsetting")
-        self.assertEquals(s.name, "testsetting")
+        self.assertEqual(s.name, "testsetting")
 
     def testLoadSettings(self):
         pass
 
     def testWriteSettings(self):
         Settings("testsetting")
-
-        if (platform.system() == 'Linux'):
-            self.assertTrue(exists(os.getenv('HOME') + '/.config/testSetting'))
+        self.assertTrue(os.path.exists(self.path))
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestSetting)
