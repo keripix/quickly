@@ -7,7 +7,7 @@ class Settings:
     """
 
     def __init__(self, name):
-        pass
+        self.name = name
 
     def loadSettings(self):
         pass

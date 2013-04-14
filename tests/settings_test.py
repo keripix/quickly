@@ -15,6 +15,10 @@ class TestSetting(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def testInit(self):
+        s = Settings("testsetting")
+        self.assertEquals(s.name, "testsetting")
+
     def testLoadSettings(self):
         pass
 
