@@ -23,5 +23,10 @@ class QuicklyTest(unittest.TestCase):
 
         self.assertTrue(q.config['PATH']['javascript'], os.path.dirname(self.path))
 
+    def testSettingNonExistingPath(self):
+        q = quickly.Quickly(self.path)
+
+        self.assertRaises(OSError, q.add, 'javascript', '/some/non/existing/path')
+
 if __name__ == '__main__':
     unittest.main()

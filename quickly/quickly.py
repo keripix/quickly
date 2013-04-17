@@ -9,13 +9,10 @@ class Quickly:
         self.config = settings.Settings(path).getConfig()
 
     def add(self, key, path):
-        if not self.checkFile(path):
+        if not os.path.exists(path):
             raise OSError("{0} does not exists".format(path))
 
         self.config['PATH'][key] = path
-
-    def checkFile(self, path):
-        return os.path.exists(path)
 
 
 if __name__ == '__main__':
