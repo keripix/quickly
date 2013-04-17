@@ -52,6 +52,23 @@ class QuicklyTest(unittest.TestCase):
         c = s.getConfig()
         self.assertTrue(c['PATH']['python'], "/some/path/python")
 
+    def testDeleteConfigKey(self):
+        s = settings.Settings(self.path)
+        config = s.getConfig()
+
+        # write something new
+        config['PATH'] = {'python': "/some/path/python", 'php': "/some/path/php"}
+        s.writeConfig(config)
+        config = s.getConfig()
+
+        # lets delete something
+        config.remove_option('PATH', 'python')
+        s.writeConfig(config)
+        config = s.getConfig()
+
+        self.assertFalse('python' in config['PATH'])
+        self.assertTrue('php' in config['PATH'])
+
 
 if __name__ == '__main__':
     unittest.main()
