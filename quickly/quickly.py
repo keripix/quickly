@@ -6,7 +6,8 @@ import os
 
 class Quickly:
     def __init__(self, path=None):
-        self.config = settings.Settings(path).getConfig()
+        self.setting = settings.Settings(path)
+        self.config = self.setting.getConfig()
 
     def add(self, key, path):
         if not os.path.exists(path):
@@ -16,6 +17,9 @@ class Quickly:
 
     def remove(self, key):
         self.config.remove_option('PATH', key)
+
+    def sync(self):
+        self.setting.writeConfig(self.config)
 
 
 if __name__ == '__main__':
