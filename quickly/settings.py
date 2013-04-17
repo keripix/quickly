@@ -5,8 +5,12 @@ import configparser
 
 
 class Settings:
-    def __init__(self):
-        self.path = os.path.join(os.path.expanduser('~'), '.config', 'quickly', 'settings.ini')
+    def __init__(self, path=None):
+        if path is None:
+            self.path = os.path.join(os.path.expanduser('~'), '.config', 'quickly', 'settings.ini')
+        else:
+            self.path = path
+
         self.checkSettings()
 
     def getConfig(self):
