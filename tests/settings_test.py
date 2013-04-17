@@ -39,6 +39,7 @@ class SettingsTest(unittest.TestCase):
         config = s.getConfig()
 
         self.assertEqual(config['DEFAULT']['name'], 'quickly')
+        self.assertTrue('PATH' in config)
 
     def testWritingSettings(self):
         s = settings.Settings(self.path)

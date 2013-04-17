@@ -31,6 +31,7 @@ class Settings:
 
         config = configparser.ConfigParser()
         config['DEFAULT'] = {'name': 'quickly'}
+        config['PATH'] = {}
 
         with open(self.path, 'w') as file:
             config.write(file)
