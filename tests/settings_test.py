@@ -5,7 +5,7 @@ import os
 import quickly.settings as settings
 
 
-class QuicklyTest(unittest.TestCase):
+class SettingsTest(unittest.TestCase):
     def setUp(self):
         self.path = os.path.join(os.path.expanduser('~'), '.config', 'quickly', 'testsettings.ini')
 
