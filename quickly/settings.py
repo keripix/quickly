@@ -19,7 +19,8 @@ class Settings:
         return config
 
     def writeConfig(self, config):
-        pass
+        with open(self.path, 'w') as configFile:
+            config.write(configFile)
 
     def checkSettings(self):
         if not os.path.exists(os.path.dirname(self.path)):

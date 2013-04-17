@@ -13,6 +13,21 @@ class QuicklyTest(unittest.TestCase):
         if os.path.exists(self.path):
             os.remove(self.path)
 
+    def testDefaultSettingsPath(self):
+        default = os.path.join(os.path.expanduser('~'), '.config', 'quickly', 'settings.ini')
+        backup = os.path.join(os.path.dirname(default), '_settings.ini')
+
+        if os.path.exists(default):
+            os.rename(default, backup)
+
+        settings.Settings()
+
+        self.assertTrue(os.path.exists(default))
+
+        if (os.path.exists(backup)):
+            os.remove(default)
+            os.rename(backup, default)
+
     def testInitiatingQuicklyTheFirstTimeWouldCreateSettingsFile(self):
         settings.Settings(self.path)
 
@@ -24,6 +39,18 @@ class QuicklyTest(unittest.TestCase):
         config = s.getConfig()
 
         self.assertEqual(config['DEFAULT']['name'], 'quickly')
+
+    def testWritingSettings(self):
+        s = settings.Settings(self.path)
+        config = s.getConfig()
+
+        # write something new
+        config['PATH'] = {'python': "/some/path/python", 'php': "/some/path/php"}
+        s.writeConfig(config)
+
+        # now test wether the last config has been saved properly
+        c = s.getConfig()
+        self.assertTrue(c['PATH']['python'], "/some/path/python")
 
 
 if __name__ == '__main__':
