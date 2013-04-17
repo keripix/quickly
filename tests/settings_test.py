@@ -19,5 +19,12 @@ class QuicklyTest(unittest.TestCase):
         settingPath = os.path.join(os.path.expanduser('~'), '.config', 'quickly', 'settings.ini')
         self.assertTrue(os.path.exists(settingPath))
 
+    def testGetSettings(self):
+        s = settings.Settings()
+        config = s.getConfig()
+
+        self.assertEqual(config['DEFAULT']['name'], 'quickly')
+
+
 if __name__ == '__main__':
     unittest.main()
