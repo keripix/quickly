@@ -14,6 +14,9 @@ class Quickly:
 
         self.config['PATH'][key] = path
 
+    def remove(self, key):
+        self.config.remove_option('PATH', key)
+
 
 if __name__ == '__main__':
     pass

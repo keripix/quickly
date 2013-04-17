@@ -28,5 +28,18 @@ class QuicklyTest(unittest.TestCase):
 
         self.assertRaises(OSError, q.add, 'javascript', '/some/non/existing/path')
 
+    def testDeletingKey(self):
+        q = quickly.Quickly(self.path)
+        q.add('javascript', os.path.dirname(self.path))
+        q.add('php', os.path.dirname(self.path))
+        q.add('python', os.path.dirname(self.path))
+
+        self.assertTrue('python' in q.config['PATH'])
+
+        # now delete something
+        q.remove('php')
+        self.assertFalse('php' in q.config['PATH'])
+        self.assertTrue('python' in q.config['PATH'])
+
 if __name__ == '__main__':
     unittest.main()
