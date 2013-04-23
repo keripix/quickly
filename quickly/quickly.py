@@ -24,3 +24,5 @@ class Quickly:
 
 if __name__ == '__main__':
     pass
+    # TODO args parser
+    # TODO autocompleter
