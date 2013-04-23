@@ -21,6 +21,23 @@ class Quickly:
     def sync(self):
         self.setting.writeConfig(self.config)
 
+QUICKLY_PARSER = {
+    "prog": "quickly",
+    "description": "A small script that allows you to do cd without having to type the whole path",
+    "args": [
+        {
+            "name": "addDirectory",
+            "type": "positional",
+            "help": "Add directory to be rembered",
+            ""
+        },
+        {
+            "name": "directoryKey",
+            "type": "positional",
+            "help": "The directory will be accessed by this key"
+        }
+    ]
+}
 
 if __name__ == '__main__':
     pass
