@@ -2,7 +2,7 @@
 
 import unittest
 import os
-import quickly.settings as settings
+from quickly.settings import Settings
 
 
 class SettingsTest(unittest.TestCase):
@@ -20,7 +20,7 @@ class SettingsTest(unittest.TestCase):
         if os.path.exists(default):
             os.rename(default, backup)
 
-        settings.Settings()
+        Settings()
 
         self.assertTrue(os.path.exists(default))
 
@@ -29,20 +29,20 @@ class SettingsTest(unittest.TestCase):
             os.rename(backup, default)
 
     def testInitiatingQuicklyTheFirstTimeWouldCreateSettingsFile(self):
-        settings.Settings(self.path)
+        Settings(self.path)
 
         settingPath = os.path.join(os.path.expanduser('~'), '.config', 'quickly', 'testsettings.ini')
         self.assertTrue(os.path.exists(settingPath))
 
     def testGetSettings(self):
-        s = settings.Settings(self.path)
+        s = Settings(self.path)
         config = s.getConfig()
 
         self.assertEqual(config['DEFAULT']['name'], 'quickly')
         self.assertTrue('PATH' in config)
 
     def testWritingSettings(self):
-        s = settings.Settings(self.path)
+        s = Settings(self.path)
         config = s.getConfig()
 
         # write something new
@@ -54,7 +54,7 @@ class SettingsTest(unittest.TestCase):
         self.assertTrue(c['PATH']['python'], "/some/path/python")
 
     def testDeleteConfigKey(self):
-        s = settings.Settings(self.path)
+        s = Settings(self.path)
         config = s.getConfig()
 
         # write something new

@@ -2,7 +2,7 @@
 
 import unittest
 import os
-import quickly.quickly as quickly
+from quickly.quickly import Quickly
 
 
 class QuicklyTest(unittest.TestCase):
@@ -14,22 +14,22 @@ class QuicklyTest(unittest.TestCase):
             os.remove(self.path)
 
     def testInitQuickly(self):
-        q = quickly.Quickly(self.path)
+        q = Quickly(self.path)
         self.assertEqual(q.config['DEFAULT']['name'], "quickly")
 
     def testSettingExistingPath(self):
-        q = quickly.Quickly(self.path)
+        q = Quickly(self.path)
         q.add('javascript', os.path.dirname(self.path))
 
         self.assertTrue(q.config['PATH']['javascript'], os.path.dirname(self.path))
 
     def testSettingNonExistingPath(self):
-        q = quickly.Quickly(self.path)
+        q = Quickly(self.path)
 
         self.assertRaises(OSError, q.add, 'javascript', '/some/non/existing/path')
 
     def testDeletingKey(self):
-        q = quickly.Quickly(self.path)
+        q = Quickly(self.path)
         q.add('javascript', os.path.dirname(self.path))
         q.add('php', os.path.dirname(self.path))
         q.add('python', os.path.dirname(self.path))
@@ -42,7 +42,7 @@ class QuicklyTest(unittest.TestCase):
         self.assertTrue('python' in q.config['PATH'])
 
     def testSyncing(self):
-        q = quickly.Quickly(self.path)
+        q = Quickly(self.path)
         q.add('javascript', os.path.dirname(self.path))
         q.add('php', os.path.dirname(self.path))
         q.add('python', os.path.dirname(self.path))
@@ -52,7 +52,7 @@ class QuicklyTest(unittest.TestCase):
         q.remove('php')
         q.sync()
 
-        q2 = quickly.Quickly(self.path)
+        q2 = Quickly(self.path)
         self.assertTrue('python' in q2.config['PATH'])
         self.assertTrue('javascript' in q2.config['PATH'])
 

@@ -8,8 +8,10 @@ We want to be able to `cd` quickly to the path: `/path/to/a/directory`. So the s
 
     $ quickly -add /path/to/a/directory -as a_dir
 
-The above command will tell quickly to store `/path/to/a/directory` as `a_dir`. To `cd` to `/path/to/a/directory`, you just type:
+The above command will tell quickly to store `/path/to/a/directory` as `a_dir`.
+
+To `cd` to `/path/to/a/directory`, you just type:
 
     $ quickly a_dir
 
-And quickly will bring you to `/path/to/a/directory`.
+And quickly will change your current working directory to `/path/to/a/directory`.
