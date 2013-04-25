@@ -6,7 +6,7 @@ Quickly is a small python command-line script enabling you to do change director
 
 We want to be able to `cd` quickly to the path: `/path/to/a/directory`. So the step is:
 
-    $ q -add /path/to/a/directory -as a_dir
+    $ q -a a_dir /path/to/a/directory
 
 The above command will tell quickly to store `/path/to/a/directory` as `a_dir`.
 
@@ -20,15 +20,15 @@ And quickly will change your current working directory to `/path/to/a/directory`
 
 To remove a key from quickly, run:
 
-    $ q rm a_dir
+    $ q -rm a_dir
 
 To update a key and map it to a different path:
 
-    $ q edit a_dir as /another/path
+    $ q -e a_dir /another/path
 
 To show the list of key and its mapped path:
 
-    $ q ls
+    $ q -ls
 
 ## Install
 
