@@ -67,5 +67,20 @@ class QuicklyTest(unittest.TestCase):
         self.assertTrue('python' in q2.config['PATH'])
         self.assertTrue('javascript' in q2.config['PATH'])
 
+    def testUpdate(self):
+        q = Quickly(self.path)
+        q.add('javascript', os.path.dirname(self.path))
+        q.add('php', os.path.dirname(self.path))
+        q.add('python', os.path.dirname(self.path))
+        q.sync()
+
+        q = Quickly(self.path)
+        q.edit('php', '/php/the/right/way')
+        q.sync()
+
+        q = Quickly(self.path)
+        self.assertTrue('php' in q.config['PATH'])
+        self.assertEqual(q.config['PATH']['php'], '/php/the/right/way')
+
 if __name__ == '__main__':
     unittest.main()

@@ -17,7 +17,7 @@ class Quickly:
         self.config.remove_option('PATH', key)
 
     def edit(self, key, path):
-        pass
+        self.config['PATH'][key] = path
 
     def list(self):
         pass
