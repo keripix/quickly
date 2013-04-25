@@ -9,7 +9,7 @@ class Quickly:
 
     def add(self, key, path):
         if not os.path.exists(path):
-            raise OSError("{0} does not exists".format(path))
+            raise OSError("{path} does not exists".format(path=path))
 
         self.config['PATH'][key] = path
 
