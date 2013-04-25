@@ -16,5 +16,11 @@ class Quickly:
     def remove(self, key):
         self.config.remove_option('PATH', key)
 
+    def edit(self, key, path):
+        pass
+
+    def list(self):
+        pass
+
     def sync(self):
         self.setting.writeConfig(self.config)

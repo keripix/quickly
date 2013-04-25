@@ -40,6 +40,17 @@ class QuicklyTest(unittest.TestCase):
         q.remove('php')
         self.assertFalse('php' in q.config['PATH'])
         self.assertTrue('python' in q.config['PATH'])
+        q.sync()
+
+        q2 = Quickly(self.path)
+        self.assertFalse('php' in q2.config['PATH'])
+        self.assertTrue('python' in q2.config['PATH'])
+        q2.remove('python')
+        q2.sync()
+
+        q3 = Quickly(self.path)
+        self.assertFalse('php' in q3.config['PATH'])
+        self.assertFalse('python' in q3.config['PATH'])
 
     def testSyncing(self):
         q = Quickly(self.path)
