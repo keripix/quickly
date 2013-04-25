@@ -20,7 +20,7 @@ class Quickly:
         self.config['PATH'][key] = path
 
     def list(self):
-        pass
+        return self.config['PATH']
 
     def sync(self):
         self.setting.writeConfig(self.config)

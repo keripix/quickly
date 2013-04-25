@@ -82,5 +82,17 @@ class QuicklyTest(unittest.TestCase):
         self.assertTrue('php' in q.config['PATH'])
         self.assertEqual(q.config['PATH']['php'], '/php/the/right/way')
 
+    def testList(self):
+        q = Quickly(self.path)
+        q.add('javascript', os.path.dirname(self.path))
+        q.add('php', os.path.dirname(self.path))
+        q.add('python', os.path.dirname(self.path))
+        q.sync()
+
+        ls = q.list()
+        self.assertEqual(ls['php'], os.path.dirname(self.path))
+        self.assertEqual(ls['javascript'], os.path.dirname(self.path))
+        self.assertEqual(ls['python'], os.path.dirname(self.path))
+
 if __name__ == '__main__':
     unittest.main()
