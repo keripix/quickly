@@ -14,9 +14,9 @@ def main(args, q):
     elif args.remove:
         q.remove(args.remove)
     elif args.list:
-        ls = q.list()
-        for k, v in ls:
-            print('{} -> {}'.format(k, v))
+        ls = q.listKeys()
+        for k in ls:
+            print('{}'.format(k))
     elif args.key:
         q.cd(args.key)
 
@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Do a quick cd without typing the whole path')
 
-    parser.add_argument('key', default=1, help="CD to this key")
+    parser.add_argument('key', nargs='?', default=1, help="CD to this key")
 
     parser.add_argument('-a', '--add', metavar=('KEY', 'PATH'), nargs=2, help='Map key to the specified path')
     parser.add_argument('-e', '--edit', metavar=('KEY', 'PATH'), nargs=2, help='Edit the given key with a new path')
