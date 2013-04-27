@@ -82,12 +82,12 @@ class QuicklyTest(unittest.TestCase):
         q.sync()
 
         q = Quickly(self.path)
-        q.edit('php', '/php/the/right/way')
+        q.edit('php', os.path.expanduser('~'))
         q.sync()
 
         q = Quickly(self.path)
         self.assertTrue('php' in q.config['PATH'])
-        self.assertEqual(q.config['PATH']['php'], '/php/the/right/way')
+        self.assertEqual(q.config['PATH']['php'], os.path.expanduser('~'))
 
     def testList(self):
         q = Quickly(self.path)

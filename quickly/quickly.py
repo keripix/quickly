@@ -18,11 +18,7 @@ class Quickly:
         self.config.remove_option('PATH', key)
 
     def edit(self, key, path):
-        path = os.path.abspath(path)
-        if not os.path.exists(path):
-            raise OSError("{path} does not exists".format(path=path))
-
-        self.config['PATH'][key] = path
+        self.add(key, path)
 
     def list(self):
         return self.config['PATH']
