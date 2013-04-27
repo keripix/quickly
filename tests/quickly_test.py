@@ -94,5 +94,16 @@ class QuicklyTest(unittest.TestCase):
         self.assertEqual(ls['javascript'], os.path.dirname(self.path))
         self.assertEqual(ls['python'], os.path.dirname(self.path))
 
+    def testListingKeys(self):
+        q = Quickly(self.path)
+        q.add('javascript', os.path.dirname(self.path))
+        q.add('php', os.path.dirname(self.path))
+        q.add('python', os.path.dirname(self.path))
+        q.sync()
+
+        keys = q.listKeys()
+        self.assertEqual(len(keys), 3)
+
+
 if __name__ == '__main__':
     unittest.main()

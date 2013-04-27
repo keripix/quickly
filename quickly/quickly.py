@@ -22,5 +22,17 @@ class Quickly:
     def list(self):
         return self.config['PATH']
 
+    def listKeys(self):
+        return list(self.config['PATH'].keys())
+
     def sync(self):
         self.setting.writeConfig(self.config)
+
+    def cd(self, key):
+        if key in self.config['PATH']:
+            if (os.path.exists(self.config['PATH'][key])):
+                pass
+            else:
+                print("The path for {} which is {} cannot be found".format(key, self.config['PATH'][key]))
+        else:
+            print("{} has not been added. Cannot continue process".format(key))

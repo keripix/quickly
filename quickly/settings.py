@@ -2,6 +2,8 @@ import os
 import configparser
 
 
+# TODO bila PATH section tidak ada pada settings.ini, maka section
+# tersebut harus dibuat
 class Settings:
     def __init__(self, path=None):
         if path is None:
