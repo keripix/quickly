@@ -8,6 +8,7 @@ class Quickly:
         self.config = self.setting.getConfig()
 
     def add(self, key, path):
+        path = os.path.abspath(path)
         if not os.path.exists(path):
             raise OSError("{path} does not exists".format(path=path))
 
@@ -31,7 +32,7 @@ class Quickly:
     def cd(self, key):
         if key in self.config['PATH']:
             if (os.path.exists(self.config['PATH'][key])):
-                pass
+                print(self.config['PATH'][key])
             else:
                 print("The path for {} which is {} cannot be found".format(key, self.config['PATH'][key]))
         else:

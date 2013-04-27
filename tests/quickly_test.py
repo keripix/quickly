@@ -23,6 +23,13 @@ class QuicklyTest(unittest.TestCase):
 
         self.assertTrue(q.config['PATH']['javascript'], os.path.dirname(self.path))
 
+    def testSettingCurrentDirectoryAsDot(self):
+        q = Quickly(self.path)
+        os.chdir(os.path.expanduser('~'))
+        q.add('javascript', '.')
+
+        self.assertEqual(q.config['PATH']['javascript'], os.path.expanduser('~'))
+
     def testSettingNonExistingPath(self):
         q = Quickly(self.path)
 
