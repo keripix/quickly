@@ -6,6 +6,13 @@ import argcomplete
 from quickly import quickly
 
 
+def listKeys(prefix, **kwargs):
+    q = quickly.Quickly()
+    ls = q.list()
+
+    return (v for v in ls if v.startswith(prefix))
+
+
 def main(args, q):
     if args.add:
         q.add(args.add[0], args.add[1])
@@ -14,9 +21,9 @@ def main(args, q):
     elif args.remove:
         q.remove(args.remove)
     elif args.list:
-        ls = q.listKeys()
-        for k in ls:
-            print('{}'.format(k))
+        ls = q.list()
+        for k, v in ls.items():
+            print('{:{width}} -> {}'.format(k, v, width=15))
     elif args.key:
         q.cd(args.key)
 
@@ -31,9 +38,9 @@ if __name__ == '__main__':
 
     parser.add_argument('-a', '--add', metavar=('KEY', 'PATH'), nargs=2, help='Map key to the specified path')
 
-    parser.add_argument('-e', '--edit', metavar=('KEY', 'PATH'), nargs=2, help='Edit the given key with a new path').completer = q.listKeys
+    parser.add_argument('-e', '--edit', metavar=('KEY', 'PATH'), nargs=2, help='Edit the given key with a new path').completer = listKeys
 
-    parser.add_argument('-rm', '--remove', metavar='KEY', help='Remove the given key').completer = q.listKeys
+    parser.add_argument('-rm', '--remove', metavar='KEY', help='Remove the given key').completer = listKeys
 
     parser.add_argument('-ls', '--list', action='store_true', help='List all keys with mapped paths')
 

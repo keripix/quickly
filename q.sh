@@ -1,5 +1,5 @@
 #!/bin/sh
-eval "$(register-python-argcomplete /home/keripix/bin/q.py)"
+#eval "$(register-python-argcomplete /home/keripix/bin/q.py)"
 
 q(){
     res=$(q.py $@)

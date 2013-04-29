@@ -23,8 +23,8 @@ class Quickly:
     def list(self):
         return self.config['PATH']
 
-    def listKeys(self):
-        return list(self.config['PATH'].keys())
+    def listKeys(self, prefix, **kwargs):
+        return (v for v in self.config['PATH'].keys() if v.startswith(prefix))
 
     def sync(self):
         self.setting.writeConfig(self.config)
