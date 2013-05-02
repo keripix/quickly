@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     parser.add_argument('-a', '--add', metavar=('KEY', 'PATH'), nargs=2, help='Map key to the specified path')
 
-    parser.add_argument('-e', '--edit', metavar=('KEY', 'PATH'), nargs=2, help='Edit the given key with a new path').completer = listKeys
+    parser.add_argument('-e', '--edit', metavar=('KEY', 'PATH'), nargs=2, help='Edit the given key with a new path')
 
     parser.add_argument('-rm', '--remove', metavar='KEY', help='Remove the given key').completer = listKeys
 
