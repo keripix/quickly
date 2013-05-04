@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Do a quick cd without typing the whole path')
 
-    parser.add_argument('key', nargs='?', default=1, help='CD to this key')
+    parser.add_argument('key', nargs='?', default=1, help='CD to this key').completer = listKeys
 
     parser.add_argument('-a', '--add', metavar=('KEY', 'PATH'), nargs=2, help='Map key to the specified path')
 

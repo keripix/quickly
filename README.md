@@ -38,18 +38,20 @@ To show the list of key and its mapped path:
 
 ## Install
 
-Currently, the installation process is still manual.
+Currently, the installation process sucks.
 
 1. Clone this repo
 2. Link the q.py file to a path that is recognised by your command line $PATH environment.
-3. Copy q.sh to /etc/profile.d/
-4. Restart (maybe?)
+3. add the content of q.bash (not including `#!/bin/bash`) to .bashrc
+4. run `source .bashrc`
 
-I'm still studying how to distribute this software properly.
+I'm still studying how to distribute this software properly. __What's proper?__
+
+Well, I want the user to be able to run `q` (as shown by examples above) when the user opens a terminal/console. Currently, I don't know how to do that.
 
 ## Contribute
 
-TODO
+Please do :D. Just clone this repo and do a pull request for any feature that you think would be great to be added to this project.
 
 ## Test
 
