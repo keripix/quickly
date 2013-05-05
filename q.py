@@ -2,15 +2,8 @@
 
 
 import argparse
-import argcomplete
+#import argcomplete
 from quickly import quickly
-
-
-def listKeys(prefix, **kwargs):
-    q = quickly.Quickly()
-    ls = q.list()
-
-    return (v for v in ls if v.startswith(prefix))
 
 
 def main(args, q):
@@ -34,17 +27,17 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Do a quick cd without typing the whole path')
 
-    parser.add_argument('key', nargs='?', default=1, help='CD to this key').completer = listKeys
+    parser.add_argument('key', nargs='?', default=1, help='CD to this key')
 
     parser.add_argument('-a', '--add', metavar=('KEY', 'PATH'), nargs=2, help='Map key to the specified path')
 
     parser.add_argument('-e', '--edit', metavar=('KEY', 'PATH'), nargs=2, help='Edit the given key with a new path')
 
-    parser.add_argument('-rm', '--remove', metavar='KEY', help='Remove the given key').completer = listKeys
+    parser.add_argument('-rm', '--remove', metavar='KEY', help='Remove the given key')
 
     parser.add_argument('-ls', '--list', action='store_true', help='List all keys with mapped paths')
 
-    argcomplete.autocomplete(parser)
+    # argcomplete.autocomplete(parser)
     args = parser.parse_args()
 
     main(args, q)
